@@ -4,5 +4,5 @@ from .conf import WechatConf
 from .core import Wechat
 #from .oauth import *
 #from .receiver import *
-#from .sender import *
+from .sender import WechatObjects
 #from .WXBizMsgCrypt import *
