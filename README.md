@@ -176,9 +176,10 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 `agent_dicts`是企业号应用的信息，在应用中心-回调模式中可以找到。每个应用的信息包括`agentid`、`token`、`encoding_aes_key`三个参数，需要用到的应用信息组成一个tuple。  
 
 ##调用
-假设已经配置好了wechat_conf  
+假设已经配置好了wechat_conf
+###
 	from wechat_enter import Wechat  
-	wechat=Wechat(wechat_conf)
+	wechat = Wechat(wechat_conf)
 ###回调URL验证
 	text = wechat.url_validator.validate(msg_signature, timestamp, nonce, echostr)
 	#再用最简单的HttpResponse返回这个text即可完成验证
