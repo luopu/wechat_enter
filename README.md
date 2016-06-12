@@ -176,9 +176,9 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 `agent_dicts`是企业号应用的信息，在应用中心-回调模式中可以找到。每个应用的信息包括`agentid`、`token`、`encoding_aes_key`三个参数，需要用到的应用信息组成一个tuple。  
 
 ##调用
-假设已经配置好了wechat_conf
-    from wechat_enter import Wechat
-    wechat=Wechat(wechat_conf)
+假设已经配置好了wechat_conf  
+	from wechat_enter import Wechat  
+	wechat=Wechat(wechat_conf)
 ###回调URL验证
 	text = wechat.url_validator.validate(msg_signature, timestamp, nonce, echostr)
 	#再用最简单的HttpResponse返回这个text即可完成验证
@@ -187,12 +187,12 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 ###获取通讯录部门列表
 	depart_list = wechat.departments.list()
 ###发送文本消息
-  	body = {
-  	  "touser" : userid,
-  	  "text"   : {
-  	    "content": content
-  	   },
-     }
+	body = {
+	    "touser" : userid,
+	    "text"   : {
+  	        "content": content
+	    },
+	}
 	wechat.message_sender.send_text(body)
 ###接受消息和事件
 	message=wechat.message_receiver.parse(msg_signature, timestamp, nonce, msg_body)
@@ -209,11 +209,11 @@ https://qyapi.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN&agentid=A
 菜单类应该写为： 
 ###
 	class WechatMenu(WechatObjects):
-      def get(self, agentid):
-        query_dict = {
-          "agentid":agentid
-        }
-        return self.send("menu/get", query_dict = query_dict)
+	    def get(self, agentid):
+		query_dict = {
+		    "agentid":agentid
+		}
+	    return self.send("menu/get", query_dict = query_dict)
 
 ## To Do List
 AccessToken持久化
