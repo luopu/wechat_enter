@@ -31,8 +31,8 @@ class WechatURLValidator(object):
 
     def validate(self, msg_signature, timestamp, nonce, echostr):
         for agent in self.wechat_conf.agents:
-            token = agent["token"]
-            encoding_aes_key = agent["encoding_aes_key"]
+            token = agent.token
+            encoding_aes_key = agent.encoding_aes_key
             wx = WXBizMsgCrypt(token, encoding_aes_key, self.wechat_conf.corp_id)
             ret, text = wx.VerifyURL(msg_signature, timestamp, nonce, echostr)
             if ret == 0:
