@@ -20,11 +20,10 @@ class AccessToken(object):
     @property
     def value(self):
         try:
-            if not self.__value:
-                if self.pickle and (not self.expired):
-                    self.__value, self.expires_in = self.pickle.read(self.pickel_key)
-                else:
-                    self.fetch()
+            if self.expired:
+                self.fetch()
+            elif not(self.__value) and self.pickle:
+                self.__value, self.expires_in = self.pickle.read(self.pickel_key)
         except Exception as e:
             print(e.args)
         finally:
