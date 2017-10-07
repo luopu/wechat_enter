@@ -1,6 +1,6 @@
-#Wechat-Enter 微信企业号Python-SDK
+# Wechat-Enter 微信企业号Python-SDK
 wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微信企业号后台开发，适用于Python3。
-##目前已经实现的功能：
+## 目前已经实现的功能：
 <table>
 <tbody>
 <tr>
@@ -93,7 +93,7 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 </table>
 
 
-##使用前配置
+## 使用前配置
 	from wechat_enter import WechatConf
 	corp_id = "wx1234567890”
 	secrets = (“xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”,)
@@ -109,19 +109,19 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 `secrets`是企业号管理员账号的secrets，在设置-功能设置-权限管理中可以找到。使用前注意查看不同管理员的权限设置，不同管理员对通讯录和企业号应用的权限是不一样的。需要调用的管理员的secrets统一放到这个tuple中去。  
 `agent_dicts`是企业号应用的信息，在应用中心-回调模式中可以找到。每个应用的信息包括`agentid`、`token`、`encoding_aes_key`三个参数，需要用到的应用信息组成一个tuple。  
 
-##调用
+## 调用
 假设已经配置好了wechat_conf
-###
+### 
 	from wechat_enter import Wechat  
 	wechat = Wechat(wechat_conf)
-###回调URL验证
+### 回调URL验证
 	text = wechat.url_validator.validate(msg_signature, timestamp, nonce, echostr)
 	#再用最简单的HttpResponse返回这个text即可完成验证
-###获取通讯录用户列表
+### 获取通讯录用户列表
 	user_list = wechat.users.list()
-###获取通讯录部门列表
+### 获取通讯录部门列表
 	depart_list = wechat.departments.list()
-###发送文本消息
+### 发送文本消息
 	body = {
 	    "touser" : userid,
 	    "text"   : {
@@ -129,20 +129,20 @@ wechat-enter是一个微信企业号开发的Python SDK，可以大幅简化微�
 	    },
 	}
 	wechat.message_sender.send_text(body)
-###接受消息和事件
+### 接受消息和事件
 	message=wechat.message_receiver.parse(msg_signature, timestamp, nonce, msg_body)
 	if message.type == “text”:
 		print(message.content)
 	elif message.type == “Event” and message.EVENT == “Location”:
 		print(message.Latitude, message.Longitude)
 
-##Contribute
+## Contribute
 如果要新增功能，原则上需要引入WechatObejcts(这是一个发消息的基类)。  
 继承这个基类之后，调用send函数即可。  
 以获取自定义菜单列表为例，微信标准API是：  
 https://qyapi.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN&agentid=AGENTID  
 菜单类应该写为： 
-###
+### 
 	class WechatMenu(WechatObjects):
 	    def get(self, agentid):
 		query_dict = {
